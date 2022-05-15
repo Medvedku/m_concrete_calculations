@@ -68,6 +68,16 @@ def diff_2(y, x=1, del_g=False, verbose=False, g_l=False):
     return diffs, del_x
 
 def Force_1(x):
+    """
+    Computes specific force from time.
+    WARNING: Only suitable in one case! Definetly not universal function!
+
+    Parameters:
+    x :             time
+
+    Returns:
+    F :             applied force
+    """
     x1=1.; x2=2.; x3=3.; x4=4.; x5=5.; x6=6.; x7=7.; x8=151.1
     f1=0; f2=570; f3=1073; f4=1577; f5=2565; f6=3352; f7=3967; f8=8430
     if x <= x1:
@@ -90,16 +100,41 @@ def Force_1(x):
         sys.exit("Non-valid input time time")
     return F
 
-# 1, 2, 3, 4, 5, 6, 7, 105
-# 0, 570, 1073, 1577, 2565, 3352, 3967, 7000
+
+def Force_2(x):
+    """
+    Computes specific force from time.
+    WARNING: Only suitable in one case! Definetly not universal function!
+
+    Parameters:
+    x :             time
+
+    Returns:
+    F :             applied force
+    """
+    x1 = 1.; x2 = 2.;  x3 = 3.;   x4 = 4.;   x5 = 5.;   x6 = 6.;   x7 = 7.;   x8 = 105
+    f1 = 0;  f2 = 570; f3 = 1073; f4 = 1577; f5 = 2565; f6 = 3352; f7 = 3967; f8 = 7000
+    if x <= x1:
+        F = 0
+    elif x > x1 and x <= x2:
+        F = f1 + ((f2-f1)/(x2-x1)) * (x-x1)
+    elif x > x2 and x <= x3:
+        F = f2 + ((f3-f2)/(x3-x2)) * (x-x2)
+    elif x > x3 and x <= x4:
+        F = f3 + ((f4-f3)/(x4-x3)) * (x-x3)
+    elif x > x4 and x <= x5:
+        F = f4 + ((f5-f4)/(x5-x4)) * (x-x4)
+    elif x > x5 and x <= x6:
+        F = f5 + ((f6-f5)/(x6-x5)) * (x-x5)
+    elif x > x6 and x <= x7:
+        F = f6 + ((f7-f6)/(x7-x6)) * (x-x6)
+    elif x > x7 and x <= x8:
+        F = f7 + ((f8-f7)/(x8-x7)) * (x-x7)
+    else:
+        sys.exit("Non-valid input time time")
+    return F
 
 
-# xs = [0, 4, 7, 12, 13, 15, 21, 24]         
-# ys = [0, 3, 2, 5,  9,  9,  6,  8]          
-# x_ = [-4, 0, 4, 7, 12, 13, 15, 21, 24, 27]  
-# y_ = [-3, 0, 3, 2,  5,  9,  9,  6,  8,  6]  
-# del_xs = [4, 4, 3, 5, 1, 2, 6, 3, 3]        
-# diffs = [0.75, 0.286, 0.25, 1.167, 1.333, -0.375, -0.111, 0.]
-
-
-
+def dummy():
+    print("420pussysmasher69")
+    return True
