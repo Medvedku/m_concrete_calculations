@@ -4,7 +4,16 @@ import csv
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-sys.path.insert(0, '/home/medved/github/m_concrete_calculations/')
+# import Tkinter
+
+systemko = "wndws"
+if systemko == "lnx":
+    sys.path.insert(0, '/home/medved/github/m_concrete_calculations/')
+elif systemko == "wndws":
+    sys.path.insert(0, 'c:\\Users\\user\\github\\m_concrete_calculations')
+else:
+    sys.exit("Invalid system \"systemko\" should be \"lnx\" for linux or \"wndws\" for windows")
+
 from functions import Force_2
 
 fig = plt.figure(figsize=(19, 19))
@@ -13,19 +22,31 @@ ax = plt.axes(projection='3d')
 
 np.set_printoptions(3)
 
-fi = pd.read_csv(r'/home/medved/github/m_concrete_calculations/ansys_skara/fi.csv')
+if systemko == "lnx":
+    fi = pd.read_csv(r'/home/medved/github/m_concrete_calculations/ansys_skara/fi.csv')
+elif systemko == "wndws":
+    fi = pd.read_csv(r'c:\\Users\\user\\github\\m_concrete_calculations\\ansys_skara\\fi.csv')
 if str(fi.keys()[0]) == r'Unnamed: 0':
     fi.pop(fi.keys()[0])
 
-d_y = pd.read_csv(r'/home/medved/github/m_concrete_calculations/ansys_skara/d_y.csv')
+if systemko == "lnx":
+    d_y = pd.read_csv(r'/home/medved/github/m_concrete_calculations/ansys_skara/d_y.csv')
+elif systemko == "wndws":
+    d_y = pd.read_csv(r'c:\\Users\\user\\github\\m_concrete_calculations\\ansys_skara\\d_y.csv')
 if str(d_y.keys()[0]) == r'Unnamed: 0':
     d_y.pop(d_y.keys()[0])
 
-eps = pd.read_csv(r'/home/medved/github/m_concrete_calculations/ansys_skara/eps.csv')
+if systemko == "lnx":
+    eps = pd.read_csv(r'/home/medved/github/m_concrete_calculations/ansys_skara/eps.csv')
+elif systemko == "wndws":
+    eps = pd.read_csv(r'c:\\Users\\user\\github\\m_concrete_calculations\\ansys_skara\\eps.csv')
 if str(eps.keys()[0]) == r'Unnamed: 0':
     eps.pop(eps.keys()[0])
 
-sig = pd.read_csv(r'/home/medved/github/m_concrete_calculations/ansys_skara/sig.csv')
+if systemko == "lnx":
+    sig = pd.read_csv(r'/home/medved/github/m_concrete_calculations/ansys_skara/sig.csv')
+elif systemko == "wndws":
+    sig = pd.read_csv(r'c:\\Users\\user\\github\\m_concrete_calculations\\ansys_skara\\sig.csv')
 if str(sig.keys()[0]) == r'Unnamed: 0':
     sig.pop(sig.keys()[0])
 
@@ -71,7 +92,7 @@ def create_frame_surface(frame):
 
 print(fi.keys())
 
-X, Y, Z = create_frame_surface(d_y)
+X, Y, Z = create_frame_surface(eps)
 
 # ax.plot_surface(X, Y, -Z, cmap=cm.coolwarm, linewidth=0, antialiased=True, alpha=0.5)
 ax.plot_wireframe(X, Y, -Z, color="k",
